@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import Navigation from "./components/UI/Navigation/Navigation";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
+const app = () => (
+  <div>
+    <Navigation />
+    <Switch>
+      <Route
+        render={() => (
+            <h1>Page not found</h1>
+        )}
+      />
+    </Switch>
+  </div>
+);
 
-export default App;
+export default app;
