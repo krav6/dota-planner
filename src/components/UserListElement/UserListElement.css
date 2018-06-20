@@ -1,0 +1,27 @@
+.Title {
+  color: white;
+}
+
+.Description {
+  color: #999999;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.ListItem {
+  background-color: #1a2130;
+  padding: 10px;
+  border: 1px rgba(255, 255, 255, 0.3) solid;
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -o-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+
+.ListItem:nth-child(n + 2) {
+  margin-top: -1px;
+}
+
+.ListItemUncollapsed {
+  background-color: #242e44;
+}

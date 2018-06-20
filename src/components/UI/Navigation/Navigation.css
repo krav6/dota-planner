@@ -1,0 +1,25 @@
+.NavigationBar {
+    margin-bottom: 30px;
+}
+
+.NavigationBarToggler {
+    color: white;
+}
+
+.NavigationBarBrand {
+  transform: translateX(-50%);
+  top: 0;
+  left: 50%;
+  position: absolute;
+}
+
+.NavigationLink {
+    color: white;
+    margin: 5px;
+}
+
+.NavigationLink:hover {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
