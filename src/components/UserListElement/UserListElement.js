@@ -28,9 +28,19 @@ class UserListElement extends Component {
         onClick={this.toggleMenu}
       >
         <h3 className={classes.Title}>{this.props.list.title}</h3>
+        {this.state.isOpen ? (
+          <i
+            className={"far fa-times-circle fa-lg " + classes.CloseButton}
+            onClick={e => this.props.listRemoved(e, this.props.index)}
+          />
+        ) : null}
         <p className={classes.Description}>{this.props.list.description}</p>
         <Collapse isOpen={this.state.isOpen}>
-          <HeroIcons heroes={this.props.list.heroes} />
+          <HeroIcons
+            heroes={this.props.list.heroes}
+            listIndex={this.props.index}
+            heroRemoved={this.props.heroRemoved}
+          />
         </Collapse>
       </li>
     );
