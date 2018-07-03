@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { Collapse } from "reactstrap";
 
 import HeroIcons from "../HeroIcons/HeroIcons";
 import classes from "./UserListElement.css";
-import { Collapse } from "reactstrap";
 
 class UserListElement extends Component {
   state = {

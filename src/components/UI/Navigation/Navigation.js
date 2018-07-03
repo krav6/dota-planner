@@ -28,8 +28,8 @@ class Navigation extends Component {
             <RouterNavLink className={classes.NavigationLink} to="/">
               Home
             </RouterNavLink>
-            <RouterNavLink className={classes.NavigationLink}  to="/">
-              Test
+            <RouterNavLink className={classes.NavigationLink}  to="/heroes">
+              Heroes
             </RouterNavLink>
           </Nav>
         </Collapse>
