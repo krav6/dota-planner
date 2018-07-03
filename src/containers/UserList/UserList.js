@@ -41,9 +41,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getLists: () => dispatch(listActions.getLists()),
-  onHeroRemoved: (ev, listId, heroId) =>
-    dispatch(listActions.removeHero(ev, listId, heroId)),
-  onListRemoved: (ev, listId) => dispatch(listActions.removeList(ev, listId))
+  onHeroRemoved: (listIndex, heroIndex) =>
+    dispatch(listActions.removeHero(listIndex, heroIndex)),
+  onListRemoved: (listIndex) => dispatch(listActions.removeList(listIndex))
 });
 
 export default connect(

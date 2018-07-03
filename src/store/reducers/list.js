@@ -30,33 +30,43 @@ const initialState = {
   ]
 };
 
-const removeHero = (state, action) => {
-  action.ev.stopPropagation();
-
+const addHero = (state, action) => {
   return {
     ...state,
     lists: [
-      ...state.lists.slice(0, action.listId),
+      ...state.lists.slice(0, action.listIndex),
       {
-        ...state.lists[action.listId],
+        ...state.lists[action.listIndex],
+        heroes: [...state.lists[action.listIndex].heroes, action.heroId]
+      },
+      ...state.lists.slice(action.listIndex + 1)
+    ]
+  };
+};
+
+const removeHero = (state, action) => {
+  return {
+    ...state,
+    lists: [
+      ...state.lists.slice(0, action.listIndex),
+      {
+        ...state.lists[action.listIndex],
         heroes: [
-          ...state.lists[action.listId].heroes.slice(0, action.heroId),
-          ...state.lists[action.listId].heroes.slice(action.heroId + 1)
+          ...state.lists[action.listIndex].heroes.slice(0, action.heroIndex),
+          ...state.lists[action.listIndex].heroes.slice(action.heroIndex + 1)
         ]
       },
-      ...state.lists.slice(action.listId + 1)
+      ...state.lists.slice(action.listIndex + 1)
     ]
   };
 };
 
 const removeList = (state, action) => {
-  action.ev.stopPropagation();
-
   return {
     ...state,
     lists: [
-      ...state.lists.slice(0, action.listId),
-      ...state.lists.slice(action.listId + 1)
+      ...state.lists.slice(0, action.listIndex),
+      ...state.lists.slice(action.listIndex + 1)
     ]
   };
 };
@@ -66,6 +76,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.GET_LISTS:
       //TODO: localstorage
       return state;
+    case actionTypes.ADD_HERO:
+      return addHero(state, action);
     case actionTypes.REMOVE_HERO:
       return removeHero(state, action);
     case actionTypes.REMOVE_LIST:

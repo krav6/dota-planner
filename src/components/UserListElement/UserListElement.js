@@ -31,7 +31,10 @@ class UserListElement extends Component {
         {this.state.isOpen ? (
           <i
             className={"far fa-times-circle fa-lg " + classes.CloseButton}
-            onClick={e => this.props.listRemoved(e, this.props.index)}
+            onClick={e => {
+              e.stopPropagation();
+              this.props.listRemoved(this.props.index);
+            }}
           />
         ) : null}
         <p className={classes.Description}>{this.props.list.description}</p>

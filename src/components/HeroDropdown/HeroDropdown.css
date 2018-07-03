@@ -1,0 +1,13 @@
+.Toggler {
+  margin: 0;
+  padding: 0;
+  background: 0;
+  border: 0;
+}
+
+.DropdownMenu {
+  background-color: #1a2130;
+  color: #999999;
+  border: 1px rgba(255, 255, 255, 0.3) solid;
+}
+
