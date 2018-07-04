@@ -13,29 +13,29 @@
 }
 
 .DropdownItem {
-    display: block;
-    width: 100%;
-    border: 0;
-    border-radius: 0;
-    background-color: #1a2130;
-    color: #999999;
-    padding: 5px;
-    white-space: nowrap;
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  background-color: #1a2130;
+  color: #999999;
+  padding: 5px;
+  white-space: nowrap;
   overflow: hidden;
-    text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
 .DropdownItem:hover {
-    cursor: pointer;
-    background-color: green;
-    color: white;
+  cursor: pointer;
+  background-color: green;
+  color: white;
 }
 
 .DropdownItemSelected {
-    background-color: #42547a;
-    color: white;
+  background-color: #42547a;
+  color: white;
 }
 
 .DropdownItemSelected:hover {
-    background-color: darkred;
+  background-color: darkred;
 }

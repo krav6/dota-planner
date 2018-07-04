@@ -1,6 +1,10 @@
 .Title {
   display: inline-block;
+  width: 100%;
   color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Description {
