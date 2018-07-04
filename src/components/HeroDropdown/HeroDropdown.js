@@ -36,13 +36,18 @@ class HeroDropdown extends Component {
 
   render() {
     const menuElements = this.props.lists.map((val, index) => (
-      <Button key={val.title}
-        color="primary"
+      <button
+        className={
+          classes.DropdownItem +
+          (val.heroes.includes(this.props.heroId)
+            ? " " + classes.DropdownItemSelected
+            : "")
+        }
+        key={val.title}
         onClick={() => this.onCheckboxBtnClick(index, this.props.heroId)}
-        active={val.heroes.includes(this.props.heroId)}
       >
         {val.title}
-      </Button>
+      </button>
     ));
 
     return (

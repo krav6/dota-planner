@@ -9,7 +9,7 @@ const initialState = {
       heroes: ["abaddon", "chen", "doom_bringer", "lich"]
     },
     {
-      title: "sssss",
+      title: "sssssssssssssssssssssssssssssssssssssssssssssssss",
       description: "ddddddddd",
       heroes: [
         "skeleton_king",
