@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import { applyMiddleware, compose, createStore } from "redux";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 
@@ -9,6 +9,12 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import listReducer from "./store/reducers/list";
+import filterReducer from "./store/reducers/filter";
+
+const rootReducer = combineReducers({
+  list: listReducer,
+  filter: filterReducer
+});
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
@@ -16,7 +22,7 @@ const composeEnhancers =
     : null || compose;
 
 const store = createStore(
-  listReducer,
+  rootReducer,
   composeEnhancers(applyMiddleware(thunk))
 );
 
