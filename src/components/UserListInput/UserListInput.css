@@ -1,0 +1,44 @@
+.Form {
+  background-color: #1a2130;
+  padding: 10px;
+  border: 1px rgba(255, 255, 255, 0.3) solid;
+  border-bottom: 0;
+}
+
+.Title {
+  background-color: #242e44;
+  border: 1px rgba(255, 255, 255, 0.1) solid;
+  color: white;
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Description {
+  background-color: #242e44;
+  border: 1px rgba(255, 255, 255, 0.1) solid;
+  color: white;
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.Button {
+  background: none;
+  cursor: pointer;
+  float: right;
+  border: 0;
+  margin: 10px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.Button:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.Button:focus {
+    outline: none;
+}

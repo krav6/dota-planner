@@ -7,7 +7,7 @@ import HeroIcon from "../HeroIcon/HeroIcon";
 const heroIcons = props => {
   const columns = props.heroes.map((val, index) => (
     <Col key={val} xs="5" sm="4" md="2" className="mt-1 mb-1">
-      <HeroIcon listIndex={props.listIndex} heroIndex={index} heroId={val} heroRemoved={props.heroRemoved}/>
+      <HeroIcon listIndex={props.listIndex} heroIndex={index} heroId={val} removeHero={props.removeHero}/>
     </Col>
   ));
   return (

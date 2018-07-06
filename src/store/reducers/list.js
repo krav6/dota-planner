@@ -61,6 +61,20 @@ const removeHero = (state, action) => {
   };
 };
 
+const addList = (state, action) => {
+  return {
+    ...state,
+    lists: [
+      {
+        title: action.title,
+        description: action.description,
+        heroes: [...action.heroes]
+      },
+      ...state.lists
+    ]
+  };
+};
+
 const removeList = (state, action) => {
   return {
     ...state,
@@ -80,6 +94,8 @@ const reducer = (state = initialState, action) => {
       return addHero(state, action);
     case actionTypes.REMOVE_HERO:
       return removeHero(state, action);
+    case actionTypes.ADD_LIST:
+      return addList(state, action);
     case actionTypes.REMOVE_LIST:
       return removeList(state, action);
     default:

@@ -1,4 +1,25 @@
 .List {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.AddButton {
+  background: none;
+  cursor: pointer;
+  border: 0;
+  margin: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.AddButton:hover:not([disabled]) {
+  color: white;
+}
+
+.AddButton:focus {
+  outline: none;
+}
+
+.AddButton:disabled {
+  cursor: default;
+  color: rgba(255, 255, 255, 0.2);
 }

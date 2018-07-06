@@ -14,13 +14,13 @@ const heroIcon = props => {
   );
 
   let closeIcon = null;
-  if (typeof props.heroRemoved !== "undefined") {
+  if (typeof props.removeHero !== "undefined") {
     closeIcon = (
       <i
         className={"far fa-times-circle fa-lg " + classes.CloseButton}
         onClick={e => {
           e.stopPropagation();
-          props.heroRemoved(props.listIndex, props.heroIndex);
+          props.removeHero(props.listIndex, props.heroIndex);
         }}
       />
     );

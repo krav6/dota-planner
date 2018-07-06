@@ -1,7 +1,10 @@
 export const GET_LISTS = "GET_LISTS";
+
+export const ADD_LIST = "ADD_LIST";
+export const REMOVE_LIST = "REMOVE_LIST";
+
 export const ADD_HERO = "ADD_HERO";
 export const REMOVE_HERO = "REMOVE_HERO";
-export const REMOVE_LIST = "REMOVE_LIST";
 
 export const ADD_ATTRIBUTE_FILTER = "ADD_ATTRIBUTE_FILTER";
 export const REMOVE_ATTRIBUTE_FILTER = "REMOVE_ATTRIBUTE_FILTER";

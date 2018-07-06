@@ -33,7 +33,7 @@ class UserListElement extends Component {
             className={"far fa-times-circle fa-lg " + classes.CloseButton}
             onClick={e => {
               e.stopPropagation();
-              this.props.listRemoved(this.props.index);
+              this.props.removeList(this.props.index);
             }}
           />
         ) : null}
@@ -42,7 +42,7 @@ class UserListElement extends Component {
           <HeroIcons
             heroes={this.props.list.heroes}
             listIndex={this.props.index}
-            heroRemoved={this.props.heroRemoved}
+            removeHero={this.props.removeHero}
           />
         </Collapse>
       </li>
