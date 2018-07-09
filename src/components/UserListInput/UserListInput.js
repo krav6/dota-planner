@@ -29,6 +29,7 @@ class UserListInput extends Component {
     }
 
     this.props.addList(this.state.title, this.state.description);
+    this.props.dismiss();
   };
 
   render() {

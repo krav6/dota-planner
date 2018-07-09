@@ -10,11 +10,6 @@ class HeroDropdown extends Component {
     isOpen: false
   };
 
-  componentDidMount() {
-    if (this.props.lists.length === 0) {
-      this.props.getLists();
-    }
-  }
 
   toggle = () => {
     this.setState(prevState => ({
@@ -65,7 +60,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getLists: () => dispatch(listActions.getLists()),
   onHeroAdded: (listIndex, heroId) =>
     dispatch(listActions.addHero(listIndex, heroId)),
   onHeroRemoved: (listIndex, heroIndex) =>

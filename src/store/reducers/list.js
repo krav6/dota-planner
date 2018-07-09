@@ -1,34 +1,15 @@
 import * as actionTypes from "../actions/actionTypes";
 
+const cachedLists = localStorage.getItem("lists");
+
 const initialState = {
-  lists: [
-    {
-      title: "Asd",
-      description:
-        "sddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      heroes: ["abaddon", "chen", "doom_bringer", "lich"]
-    },
-    {
-      title: "sssssssssssssssssssssssssssssssssssssssssssssssss",
-      description: "ddddddddd",
-      heroes: [
-        "skeleton_king",
-        "viper",
-        "ursa",
-        "luna",
-        "lich",
-        "sven",
-        "tidehunter",
-        "bristleback"
-      ]
-    },
-    {
-      title: "Asd2",
-      description: "sdddd",
-      heroes: ["zuus"]
-    }
-  ]
+  lists: cachedLists === null ? [] : JSON.parse(cachedLists)
 };
+
+const updateCache = state => {
+  localStorage.setItem("lists", JSON.stringify(state.lists));
+  return state;
+}
 
 const addHero = (state, action) => {
   return {
@@ -87,17 +68,14 @@ const removeList = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.GET_LISTS:
-      //TODO: localstorage
-      return state;
     case actionTypes.ADD_HERO:
-      return addHero(state, action);
+      return updateCache(addHero(state, action));
     case actionTypes.REMOVE_HERO:
-      return removeHero(state, action);
+      return updateCache(removeHero(state, action));
     case actionTypes.ADD_LIST:
-      return addList(state, action);
+      return updateCache(addList(state, action));
     case actionTypes.REMOVE_LIST:
-      return removeList(state, action);
+      return updateCache(removeList(state, action));
     default:
       return state;
   }

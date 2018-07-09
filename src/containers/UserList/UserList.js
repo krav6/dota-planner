@@ -9,14 +9,8 @@ import { Container, Row, Col } from "reactstrap";
 
 class UserList extends Component {
   state = {
-    addingNewList: true
+    addingNewList: false
   };
-
-  componentDidMount() {
-    if (this.props.lists.length === 0) {
-      this.props.getLists();
-    }
-  }
 
   dismissAdding = () => {
     this.setState({ addingNewList: false });
@@ -63,7 +57,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getLists: () => dispatch(listActions.getLists()),
   removeHero: (listIndex, heroIndex) =>
     dispatch(listActions.removeHero(listIndex, heroIndex)),
   removeList: listIndex => dispatch(listActions.removeList(listIndex)),
