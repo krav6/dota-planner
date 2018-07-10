@@ -14,3 +14,8 @@ export const isAttributeFilterActive = (attribute) => ({
     type: actionTypes.IS_ATTRIBUTE_FILTER_ACTIVE,
     attribute
 })
+
+export const updateNameFilter = (name) => ({
+    type: actionTypes.UPDATE_NAME_FILTER,
+    name
+})

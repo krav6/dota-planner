@@ -5,11 +5,12 @@ import { Container, Row, Col } from "reactstrap";
 import * as data from "../../shared/data";
 import HeroIcons from "../../components/HeroIcons/HeroIcons";
 import AttributeFilters from "../../components/Filters/AttributeFilters/AttributeFilters";
+import NameFilter from "../../components/Filters/NameFilter/NameFilter";
 import classes from "./HeroList.css";
 
 class HeroList extends Component {
   filter(heroes) {
-    return heroes.filter(val => this.props.attributes.includes(val.primary));
+    return heroes.filter(val => this.props.attributes.includes(val.primary) && val.name.includes(this.props.name));
   }
 
   render() {
@@ -23,6 +24,7 @@ class HeroList extends Component {
       <Container>
         <Row>
           <Col>
+            <NameFilter />
             <AttributeFilters />
           </Col>
         </Row>
@@ -35,7 +37,8 @@ class HeroList extends Component {
 }
 
 const mapStateToProps = state => ({
-  attributes: state.filter.attributes
+  attributes: state.filter.attributes,
+  name: state.filter.name
 });
 
 export default connect(

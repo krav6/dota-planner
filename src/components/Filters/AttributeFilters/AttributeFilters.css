@@ -1,6 +1,7 @@
 .Icon {
     opacity: 0.5;
     cursor: pointer;
+    margin: 0px 0px 0px 5px;
 }
 
 .Active {

@@ -1,14 +1,18 @@
 import * as actionTypes from "../actions/actionTypes";
 
 //TODO: Refactor it to a shared handler
-const cachedAttributes = localStorage.getItem("attributes");
+const cachedFilters = JSON.parse(localStorage.getItem("filters"));
 
 const initialState = {
-  attributes: cachedAttributes === null ? ["strength", "agility", "intelligence"] : JSON.parse(cachedAttributes)
+  attributes:
+    cachedFilters === null
+      ? ["strength", "agility", "intelligence"]
+      : cachedFilters.attributes,
+  name: cachedFilters === null ? "" : cachedFilters.name
 };
 
 const updateCache = state => {
-  localStorage.setItem("attributes", JSON.stringify(state.attributes));
+  localStorage.setItem("filters", JSON.stringify(state));
   return state;
 };
 
@@ -31,12 +35,21 @@ const removeAttributeFilter = (state, action) => {
   };
 };
 
+const updateNameFilter = (state, action) => {
+  return {
+    ...state,
+    name: action.name
+  }
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_ATTRIBUTE_FILTER:
       return updateCache(addAttributeFilter(state, action));
     case actionTypes.REMOVE_ATTRIBUTE_FILTER:
       return updateCache(removeAttributeFilter(state, action));
+    case actionTypes.UPDATE_NAME_FILTER:
+      return updateCache(updateNameFilter(state, action));
     default:
       return state;
   }
