@@ -6,11 +6,12 @@ import * as data from "../../shared/data";
 import HeroIcons from "../../components/HeroIcons/HeroIcons";
 import AttributeFilters from "../../components/Filters/AttributeFilters/AttributeFilters";
 import NameFilter from "../../components/Filters/NameFilter/NameFilter";
+import AttackTypeFilters from "../../components/Filters/AttackTypeFilters/AttackTypeFilters";
 import classes from "./HeroList.css";
 
 class HeroList extends Component {
   filter(heroes) {
-    return heroes.filter(val => this.props.attributes.includes(val.primary) && val.name.includes(this.props.name));
+    return heroes.filter(val => this.props.attributes.includes(val.primary) && val.name.includes(this.props.name) && this.props.attackTypes.includes(val.attackType));
   }
 
   render() {
@@ -20,25 +21,25 @@ class HeroList extends Component {
       list = <HeroIcons heroes={heroes} />;
     }
 
-    return (
-      <Container>
+    return <Container>
         <Row>
           <Col>
             <NameFilter />
             <AttributeFilters />
+            <AttackTypeFilters />
           </Col>
         </Row>
         <Row>
           <Col className={classes.List}>{list}</Col>
         </Row>
-      </Container>
-    );
+      </Container>;
   }
 }
 
 const mapStateToProps = state => ({
   attributes: state.filter.attributes,
-  name: state.filter.name
+  name: state.filter.name,
+  attackTypes: state.filter.attackTypes
 });
 
 export default connect(

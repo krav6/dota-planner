@@ -8,7 +8,11 @@ const initialState = {
     cachedFilters === null
       ? ["strength", "agility", "intelligence"]
       : cachedFilters.attributes,
-  name: cachedFilters === null ? "" : cachedFilters.name
+  name: cachedFilters === null ? "" : cachedFilters.name,
+  attackTypes:
+    cachedFilters === null
+      ? ["MELEE", "RANGED"]
+      : cachedFilters.attackTypes
 };
 
 const updateCache = state => {
@@ -39,7 +43,26 @@ const updateNameFilter = (state, action) => {
   return {
     ...state,
     name: action.name
-  }
+  };
+};
+
+const addAttackTypeFilter = (state, action) => {
+  return {
+    ...state,
+    attackTypes: [...state.attackTypes, action.attackType]
+  };
+};
+
+const removeAttackTypeFilter = (state, action) => {
+  const index = state.attackTypes.indexOf(action.attackType);
+
+  return {
+    ...state,
+    attackTypes: [
+      ...state.attackTypes.slice(0, index),
+      ...state.attackTypes.slice(index + 1)
+    ]
+  };
 };
 
 const reducer = (state = initialState, action) => {
@@ -50,6 +73,10 @@ const reducer = (state = initialState, action) => {
       return updateCache(removeAttributeFilter(state, action));
     case actionTypes.UPDATE_NAME_FILTER:
       return updateCache(updateNameFilter(state, action));
+    case actionTypes.ADD_ATTACKTYPE_FILTER:
+      return updateCache(addAttackTypeFilter(state, action));
+    case actionTypes.REMOVE_ATTACKTYPE_FILTER:
+      return updateCache(removeAttackTypeFilter(state, action));
     default:
       return state;
   }

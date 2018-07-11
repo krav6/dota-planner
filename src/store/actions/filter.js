@@ -10,12 +10,17 @@ export const removeAttributeFilter = (attribute) => ({
     attribute
 });
 
-export const isAttributeFilterActive = (attribute) => ({
-    type: actionTypes.IS_ATTRIBUTE_FILTER_ACTIVE,
-    attribute
-})
-
 export const updateNameFilter = (name) => ({
     type: actionTypes.UPDATE_NAME_FILTER,
     name
-})
+});
+
+export const addAttackTypeFilter = (attackType) => ({
+    type: actionTypes.ADD_ATTACKTYPE_FILTER,
+    attackType
+});
+
+export const removeAttackTypeFilter = (attackType) => ({
+    type: actionTypes.REMOVE_ATTACKTYPE_FILTER,
+    attackType
+});
