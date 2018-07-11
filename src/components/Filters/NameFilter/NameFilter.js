@@ -13,6 +13,7 @@ class NameFilter extends Component {
   render() {
     return (
       <Auxiliary>
+          <label className={classes.Label}>Name:</label> 
         <input
           className={classes.Input}
           type="text"

@@ -10,9 +10,13 @@ import AttackTypeFilters from "../../components/Filters/AttackTypeFilters/Attack
 import classes from "./HeroList.css";
 
 class HeroList extends Component {
-  filter(heroes) {
-    return heroes.filter(val => this.props.attributes.includes(val.primary) && val.name.includes(this.props.name) && this.props.attackTypes.includes(val.attackType));
-  }
+  filter = heroes =>
+    heroes.filter(
+      val =>
+        this.props.attributes.includes(val.primary) &&
+        val.name.includes(this.props.name) &&
+        this.props.attackTypes.includes(val.attackType)
+    );
 
   render() {
     const heroes = this.filter(data.HERO_LIST).map(val => val.id);
@@ -22,10 +26,14 @@ class HeroList extends Component {
     }
 
     return <Container>
-        <Row>
-          <Col>
+        <Row className="justify-content-lg-center align-items-center">
+          <Col xs="12" lg="4" className="mt-1 mb-1">
             <NameFilter />
+          </Col>
+          <Col xs="12" md="3" lg="3" className="mt-1 mb-1">
             <AttributeFilters />
+          </Col>
+          <Col xs="12" md="4" lg="3" className="mt-1 mb-1">
             <AttackTypeFilters />
           </Col>
         </Row>
