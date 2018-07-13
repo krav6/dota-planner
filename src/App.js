@@ -8,9 +8,9 @@ const app = () => (
   <div>
     <Navigation />
     <Switch>
-      <Route path="/heroes" component={HeroList} />
+      <Route path="/heroes" exact component={HeroList} />
       <Route path="/" exact component={UserList} />
-      <Route render={() => <h1>Page not found</h1>} />
+      <Route render={() => <h1>Page not found.</h1>} />
     </Switch>
   </div>
 );
