@@ -14,7 +14,7 @@ class HeroList extends Component {
     heroes.filter(
       val =>
         this.props.attributes.includes(val.primary) &&
-        val.name.includes(this.props.name) &&
+        val.name.toLowerCase().includes(this.props.name.toLowerCase()) &&
         this.props.attackTypes.includes(val.attackType)
     );
 
@@ -25,8 +25,9 @@ class HeroList extends Component {
       list = <HeroIcons heroes={heroes} />;
     }
 
-    return <Container>
-        <Row className="justify-content-lg-center align-items-center">
+    return (
+      <Container>
+        <Row className="justify-content-center align-items-center">
           <Col xs="12" lg="4" className="mt-1 mb-1">
             <NameFilter />
           </Col>
@@ -40,7 +41,8 @@ class HeroList extends Component {
         <Row>
           <Col className={classes.List}>{list}</Col>
         </Row>
-      </Container>;
+      </Container>
+    );
   }
 }
 
