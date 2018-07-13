@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-.AddButton {
+.Button {
   background: none;
   cursor: pointer;
   border: 0;
@@ -11,15 +11,15 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.AddButton:hover:not([disabled]) {
+.Button:hover:not([disabled]) {
   color: white;
 }
 
-.AddButton:focus {
+.Button:focus {
   outline: none;
 }
 
-.AddButton:disabled {
+.Button:disabled {
   cursor: default;
   color: rgba(255, 255, 255, 0.2);
 }

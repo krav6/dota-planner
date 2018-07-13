@@ -8,6 +8,10 @@ import classes from "./UserList.css";
 import { Container, Row, Col } from "reactstrap";
 
 class UserList extends Component {
+  constructor(props) {
+    super(props);
+    this.listChildrenRefs = [];
+  }
   state = {
     addingNewList: false
   };
@@ -18,6 +22,16 @@ class UserList extends Component {
 
   activateAdding = () => {
     this.setState({ addingNewList: true });
+  };
+
+  f1 = (inst) => {
+    this.listChildrenRefs.push(inst);
+  }
+
+  f2 = () => {
+    this.listChildrenRefs.forEach(element => {
+      element.open();
+    });
   }
 
   render() {
@@ -28,27 +42,44 @@ class UserList extends Component {
         dismiss={this.dismissAdding}
       />
     ) : null;
-
+    
     const lists = this.props.lists.map((val, index) => (
       <UserListElement
         key={val.title}
+        ref={this.f1
+        }
         index={index}
         list={val}
         removeList={this.props.removeList}
         removeHero={this.props.removeHero}
       />
     ));
-    return <Container>
+
+    return (
+      <Container>
         <Row className="justify-content-center">
           <Col>
-            <button className={classes.AddButton} disabled={this.state.addingNewList} type="button" onClick={() => this.activateAdding()}>
+            <button
+              className={classes.Button}
+              disabled={this.state.addingNewList}
+              type="button"
+              onClick={() => this.activateAdding()}
+            >
               <i className="fas fa-plus fa-lg" />
+            </button>
+            <button
+              className={classes.Button}
+              type="button"
+              onClick={this.f2}
+            >
+              <i className="fas fa-folder-open fa-lg" />
             </button>
             {input}
             <ul className={classes.List}>{lists}</ul>
           </Col>
         </Row>
-      </Container>;
+      </Container>
+    );
   }
 }
 

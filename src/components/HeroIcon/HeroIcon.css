@@ -1,10 +1,6 @@
-.Icon {
+.Picture {
   width: 100%;
   border-radius: 5%;
-}
-
-.Icon:hover {
-  box-shadow: 0px 0px 20px 1px #ffffff;
 }
 
 .CloseButton {
@@ -12,8 +8,31 @@
   color: rgba(255, 255, 255, 0.4);
   top: 10%;
   right: 13%;
+  z-index: 1;
 }
 
 .CloseButton:hover {
   color: rgba(255, 255, 255, 1);
+}
+
+.Icon {
+  width: 100%;
+  border-radius: 5%;
+  position: relative;
+}
+
+.Icon:hover {
+  box-shadow: 0px 0px 20px 1px #ffffff;
+}
+
+.HeroName {
+  position: absolute;
+  color: white;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0);
 }
