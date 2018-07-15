@@ -3,18 +3,6 @@
   border-radius: 5%;
 }
 
-.CloseButton {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.4);
-  top: 10%;
-  right: 13%;
-  z-index: 1;
-}
-
-.CloseButton:hover {
-  color: rgba(255, 255, 255, 1);
-}
-
 .Icon {
   width: 100%;
   border-radius: 5%;
