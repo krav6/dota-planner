@@ -24,11 +24,11 @@ class UserList extends Component {
     this.setState({ addingNewList: true });
   };
 
-  f1 = (inst) => {
+  storeChildrenRef = (inst) => {
     this.listChildrenRefs.push(inst);
   }
 
-  f2 = () => {
+  openLists = () => {
     this.listChildrenRefs.forEach(element => {
       element.open();
     });
@@ -46,14 +46,18 @@ class UserList extends Component {
     const lists = this.props.lists.map((val, index) => (
       <UserListElement
         key={val.title}
-        ref={this.f1
-        }
+        ref={this.storeChildrenRef}
         index={index}
         list={val}
         removeList={this.props.removeList}
         removeHero={this.props.removeHero}
       />
     ));
+
+    const openListsButton = this.props.lists.length === 0 ? null : <button className={classes.Button} type="button" onClick={this.openLists}>
+          {" "}
+          <i className="fas fa-folder-open fa-lg" />
+        </button>;
 
     return (
       <Container>
@@ -67,13 +71,7 @@ class UserList extends Component {
             >
               <i className="fas fa-plus fa-lg" />
             </button>
-            <button
-              className={classes.Button}
-              type="button"
-              onClick={this.f2}
-            >
-              <i className="fas fa-folder-open fa-lg" />
-            </button>
+            {openListsButton}
             {input}
             <ul className={classes.List}>{lists}</ul>
           </Col>
