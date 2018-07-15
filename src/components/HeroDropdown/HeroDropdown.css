@@ -23,19 +23,14 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 
-.DropdownItem:hover {
-  cursor: pointer;
-  background-color: green;
-  color: white;
+.DropdownItem:focus {
+  outline: none;
 }
 
 .DropdownItemSelected {
   background-color: #42547a;
   color: white;
-}
-
-.DropdownItemSelected:hover {
-  background-color: darkred;
 }

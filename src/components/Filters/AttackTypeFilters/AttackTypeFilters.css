@@ -12,6 +12,10 @@
     background-color: #1a2131;
 }
 
+.Button:focus {
+  outline: none;
+}
+
 .Active {
  opacity: 1;
 }
