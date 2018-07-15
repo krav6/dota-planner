@@ -50,7 +50,6 @@ class UserList extends Component {
         index={index}
         list={val}
         removeList={this.props.removeList}
-        removeHero={this.props.removeHero}
       />
     ));
 
@@ -86,8 +85,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeHero: (listIndex, heroIndex) =>
-    dispatch(listActions.removeHero(listIndex, heroIndex)),
   removeList: listIndex => dispatch(listActions.removeList(listIndex)),
   addList: (title, description) =>
     dispatch(listActions.addList(title, description, []))

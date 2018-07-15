@@ -7,6 +7,7 @@ import HeroIcons from "../../components/HeroIcons/HeroIcons";
 import AttributeFilters from "../../components/Filters/AttributeFilters/AttributeFilters";
 import NameFilter from "../../components/Filters/NameFilter/NameFilter";
 import AttackTypeFilters from "../../components/Filters/AttackTypeFilters/AttackTypeFilters";
+import HeroListDropdown from "../../components/HeroDropdown/HeroListDropdown/HeroListDropdown";
 import classes from "./HeroList.css";
 
 class HeroList extends Component {
@@ -22,7 +23,7 @@ class HeroList extends Component {
     const heroes = this.filter(data.HERO_LIST).map(val => val.id);
     let list = "No results.";
     if (heroes.length > 0) {
-      list = <HeroIcons heroes={heroes} />;
+      list = <HeroIcons iconWrapper={HeroListDropdown} heroes={heroes} />;
     }
 
     return (
