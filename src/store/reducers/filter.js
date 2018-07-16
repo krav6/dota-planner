@@ -1,6 +1,5 @@
 import * as actionTypes from "../actions/actionTypes";
 
-//TODO: Refactor it to a shared handler
 const cachedFilters = JSON.parse(localStorage.getItem("filters"));
 
 const initialState = {

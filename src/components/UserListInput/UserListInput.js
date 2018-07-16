@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
+import * as notificationActions from "../../store/actions/notification";
 import classes from "./UserListInput.css";
 
 class UserListInput extends Component {
@@ -13,18 +15,28 @@ class UserListInput extends Component {
   };
 
   isValid = () => {
-    return (
-      this.state.title !== "" &&
-      this.state.description !== "" &&
-      !this.props.listTitles.includes(this.state.title)
-    );
+    if(this.state.title === "") {
+      this.props.addErrorNotification("New list title cannot be empty.")
+      return false;
+    }
+
+    if (this.state.description === "") {
+      this.props.addErrorNotification("New list description cannot be empty.");
+      return false;
+    }
+
+    if (this.props.listTitles.includes(this.state.title)) {
+      this.props.addErrorNotification("New list title must be unique.");
+      return false;
+    }
+
+    return true;
   };
 
   handleSubmit = event => {
     event.preventDefault();
 
     if (!this.isValid()) {
-      //TODO: notify user
       return;
     }
 
@@ -65,4 +77,12 @@ class UserListInput extends Component {
   }
 }
 
-export default UserListInput;
+const mapDispatchToProps = (dispatch, props) => ({
+  addErrorNotification: message =>
+    dispatch(notificationActions.addErrorNotification(message))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(UserListInput);

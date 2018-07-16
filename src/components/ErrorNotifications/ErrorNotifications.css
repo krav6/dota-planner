@@ -1,0 +1,12 @@
+.Container {
+  position: absolute;
+  width: 60%;
+  z-index: 3;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.Alert {
+    text-align: center;
+}

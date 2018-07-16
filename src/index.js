@@ -10,10 +10,12 @@ import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import listReducer from "./store/reducers/list";
 import filterReducer from "./store/reducers/filter";
+import notificationReducer from "./store/reducers/notification";
 
 const rootReducer = combineReducers({
   list: listReducer,
-  filter: filterReducer
+  filter: filterReducer,
+  notification: notificationReducer
 });
 
 const composeEnhancers =

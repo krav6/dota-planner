@@ -3,9 +3,11 @@ import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/UI/Navigation/Navigation";
 import UserList from "./containers/UserList/UserList";
 import HeroList from "./containers/HeroList/HeroList";
+import ErrorNotifications from "./components/ErrorNotifications/ErrorNotifications";
 
 const app = () => (
   <div>
+    <ErrorNotifications />
     <Navigation />
     <Switch>
       <Route path="/heroes" exact component={HeroList} />
