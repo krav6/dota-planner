@@ -20,7 +20,7 @@ const heroIcon = props => {
   const IconWrapper = props.iconWrapper;
 
   return (
-    <IconWrapper listIndex={props.listIndex} heroId={props.heroId}>
+    <IconWrapper listId={props.listId} heroId={props.heroId}>
       {icon}
     </IconWrapper>
   );

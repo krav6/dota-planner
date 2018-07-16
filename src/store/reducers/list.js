@@ -1,3 +1,5 @@
+import shortid from "shortid";
+
 import * as actionTypes from "../actions/actionTypes";
 
 const cachedLists = localStorage.getItem("lists");
@@ -9,35 +11,47 @@ const initialState = {
 const updateCache = state => {
   localStorage.setItem("lists", JSON.stringify(state.lists));
   return state;
-}
+};
 
 const addHero = (state, action) => {
+  const listIndex = state.lists.findIndex(list => list.id === action.listId);
+
+  if (listIndex === -1) {
+    return;
+  }
+
   return {
     ...state,
     lists: [
-      ...state.lists.slice(0, action.listIndex),
+      ...state.lists.slice(0, listIndex),
       {
-        ...state.lists[action.listIndex],
-        heroes: [...state.lists[action.listIndex].heroes, action.heroId]
+        ...state.lists[listIndex],
+        heroes: [...state.lists[listIndex].heroes, action.heroNameId]
       },
-      ...state.lists.slice(action.listIndex + 1)
+      ...state.lists.slice(listIndex + 1)
     ]
   };
 };
 
 const removeHero = (state, action) => {
+  const listIndex = state.lists.findIndex(list => list.id === action.listId);
+
+  if (listIndex === -1) {
+    return;
+  }
+
   return {
     ...state,
     lists: [
-      ...state.lists.slice(0, action.listIndex),
+      ...state.lists.slice(0, listIndex),
       {
-        ...state.lists[action.listIndex],
+        ...state.lists[listIndex],
         heroes: [
-          ...state.lists[action.listIndex].heroes.slice(0, action.heroIndex),
-          ...state.lists[action.listIndex].heroes.slice(action.heroIndex + 1)
+          ...state.lists[listIndex].heroes.slice(0, action.heroIndex),
+          ...state.lists[listIndex].heroes.slice(action.heroIndex + 1)
         ]
       },
-      ...state.lists.slice(action.listIndex + 1)
+      ...state.lists.slice(listIndex + 1)
     ]
   };
 };
@@ -47,6 +61,7 @@ const addList = (state, action) => {
     ...state,
     lists: [
       {
+        id: shortid.generate(),
         title: action.title,
         description: action.description,
         heroes: [...action.heroes]
@@ -57,11 +72,17 @@ const addList = (state, action) => {
 };
 
 const removeList = (state, action) => {
+  const listIndex = state.lists.findIndex(list => list.id === action.listId);
+
+  if (listIndex === -1) {
+    return;
+  }
+
   return {
     ...state,
     lists: [
-      ...state.lists.slice(0, action.listIndex),
-      ...state.lists.slice(action.listIndex + 1)
+      ...state.lists.slice(0, listIndex),
+      ...state.lists.slice(listIndex + 1)
     ]
   };
 };

@@ -45,7 +45,7 @@ class UserList extends Component {
     
     const lists = this.props.lists.map((val, index) => (
       <UserListElement
-        key={val.title}
+        key={val.id}
         ref={this.storeChildrenRef}
         index={index}
         list={val}
@@ -85,7 +85,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeList: listIndex => dispatch(listActions.removeList(listIndex)),
+  removeList: listId => dispatch(listActions.removeList(listId)),
   addList: (title, description) =>
     dispatch(listActions.addList(title, description, []))
 });

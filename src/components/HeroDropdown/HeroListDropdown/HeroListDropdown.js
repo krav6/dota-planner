@@ -3,21 +3,22 @@ import { DropdownToggle, DropdownMenu } from "reactstrap";
 import { connect } from "react-redux";
 
 import * as listActions from "../../../store/actions/list";
-import classes from "../HeroDropdown.css"
+import classes from "../HeroDropdown.css";
 import HeroDropdown from "../HeroDropdown";
 
 class HeroListDropdown extends Component {
-  onCheckboxBtnClick(listIndex, heroId) {
+  onCheckboxBtnClick(listId, heroId) {
+    const listIndex = this.props.lists.findIndex(list => list.id === listId);
     const heroIndex = this.props.lists[listIndex].heroes.indexOf(heroId);
     if (heroIndex !== -1) {
-      this.props.onHeroRemoved(listIndex, heroIndex);
+      this.props.onHeroRemoved(listId, heroIndex);
     } else {
-      this.props.onHeroAdded(listIndex, heroId);
+      this.props.onHeroAdded(listId, heroId);
     }
   }
 
   render() {
-    const menuElements = this.props.lists.map((val, index) => (
+    const menuElements = this.props.lists.map(val => (
       <button
         className={
           classes.DropdownItem +
@@ -25,8 +26,8 @@ class HeroListDropdown extends Component {
             ? " " + classes.DropdownItemSelected
             : "")
         }
-        key={val.title}
-        onClick={() => this.onCheckboxBtnClick(index, this.props.heroId)}
+        key={val.id}
+        onClick={() => this.onCheckboxBtnClick(val.id, this.props.heroId)}
       >
         {val.title}
       </button>
@@ -50,10 +51,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onHeroAdded: (listIndex, heroId) =>
-    dispatch(listActions.addHero(listIndex, heroId)),
-  onHeroRemoved: (listIndex, heroIndex) =>
-    dispatch(listActions.removeHero(listIndex, heroIndex))
+  onHeroAdded: (listId, heroId) =>
+    dispatch(listActions.addHero(listId, heroId)),
+  onHeroRemoved: (listId, heroIndex) =>
+    dispatch(listActions.removeHero(listId, heroIndex))
 });
 
 export default connect(

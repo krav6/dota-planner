@@ -3,7 +3,7 @@ import { Collapse } from "reactstrap";
 
 import HeroIcons from "../HeroIcons/HeroIcons";
 import classes from "./UserListElement.css";
-import UserListDropdown from '../HeroDropdown/UserListDropdown/UserListDropdown';
+import UserListDropdown from "../HeroDropdown/UserListDropdown/UserListDropdown";
 
 class UserListElement extends Component {
   state = {
@@ -20,7 +20,7 @@ class UserListElement extends Component {
     this.setState(prevState => ({
       isOpen: true
     }));
-  }
+  };
 
   render() {
     let listItemClass = classes.ListItem;
@@ -28,19 +28,30 @@ class UserListElement extends Component {
       listItemClass += " " + classes.ListItemUncollapsed;
     }
 
-    return <li className={listItemClass} key={this.props.list.title}>
+    return (
+      <li className={listItemClass}>
         <h3 className={classes.Title} onClick={this.toggleMenu}>
           {this.props.list.title}
         </h3>
-        {this.state.isOpen ? <i className={"far fa-times-circle fa-lg " + classes.CloseButton} onClick={e => {
+        {this.state.isOpen ? (
+          <i
+            className={"far fa-times-circle fa-lg " + classes.CloseButton}
+            onClick={e => {
               e.stopPropagation();
-              this.props.removeList(this.props.index);
-            }} /> : null}
+              this.props.removeList(this.props.list.id);
+            }}
+          />
+        ) : null}
         <p className={classes.Description}>{this.props.list.description}</p>
         <Collapse isOpen={this.state.isOpen}>
-          <HeroIcons iconWrapper={UserListDropdown} heroes={this.props.list.heroes} listIndex={this.props.index} />
+          <HeroIcons
+            iconWrapper={UserListDropdown}
+            heroes={this.props.list.heroes}
+            listId={this.props.list.id}
+          />
         </Collapse>
-      </li>;
+      </li>
+    );
   }
 }
 

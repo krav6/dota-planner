@@ -1,14 +1,14 @@
 import * as actionTypes from "./actionTypes";
 
-export const addHero = (listIndex, heroId) => ({
+export const addHero = (listId, heroNameId) => ({
   type: actionTypes.ADD_HERO,
-  listIndex,
-  heroId
+  listId,
+  heroNameId
 });
 
-export const removeHero = (listIndex, heroIndex) => ({
+export const removeHero = (listId, heroIndex) => ({
   type: actionTypes.REMOVE_HERO,
-  listIndex,
+  listId,
   heroIndex
 });
 
@@ -19,7 +19,7 @@ export const addList = (title, description, heroes) => ({
   heroes
 });
 
-export const removeList = (listIndex) => ({
+export const removeList = (listId) => ({
   type: actionTypes.REMOVE_LIST,
-  listIndex
+  listId
 });

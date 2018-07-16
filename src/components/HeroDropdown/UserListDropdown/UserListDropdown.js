@@ -37,13 +37,16 @@ class UserListDropdown extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({
-  list: state.list.lists[props.listIndex]
-});
+const mapStateToProps = (state, props) => {
+  const listIndex = state.list.lists.findIndex(list => list.id === props.listId);
+
+  return ({
+  list: state.list.lists[listIndex]
+})};
 
 const mapDispatchToProps = (dispatch, props) => ({
   onHeroRemoved: (heroIndex) =>
-    dispatch(listActions.removeHero(props.listIndex, heroIndex))
+    dispatch(listActions.removeHero(props.listId, heroIndex))
 });
 
 export default connect(
