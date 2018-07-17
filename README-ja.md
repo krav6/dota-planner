@@ -4,7 +4,7 @@
 
 ## 概要
 
-[Dota 2](http://www.dota2.com/play/)とういうゲームのヒーロ選択フェーズに援助できるウェブアップリケーション。
+[Dota 2](http://www.dota2.com/play/)というゲームのヒーロ選択フェーズに援助できるウェブアップリケーション。
 
 ## ライブデモ
 
@@ -23,7 +23,7 @@
 * `npm run deploy`: [gh-pages](https://github.com/tschaub/gh-pages)でビルドとデプロイ. (備考: gh-pagesはdev依存です.)
 * `npm test`: テスト起動.
 
-## 利用しているパケージ
+## 利用しているパッケージ
 
 * [React](https://reactjs.org/)
 * [React-Router](https://github.com/ReactTraining/react-router)
