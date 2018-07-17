@@ -4,9 +4,9 @@
 
 ## 概要
 
-[Dota 2](http://www.dota2.com/play/)とういうゲームのヒーロ選択フェーズに援助できるウェブアップリケーション。
+[Dota 2](http://www.dota2.com/play/)とういうゲームのヒーロ選択フェーズに援助できるウェブアップリケーション。
 
-## ライブデモ
+## ライブデモ
 
 アクセスは[こちらへ](https://www.saboyaweb.com/dota-planner/)。
 
@@ -21,9 +21,9 @@
 * `npm start`: アップリケーション起動.
 * `npm run build`: アップリケーションビルド.
 * `npm run deploy`: [gh-pages](https://github.com/tschaub/gh-pages)でビルドとデプロイ. (備考: gh-pagesはdev依存です.)
-* `npm test`: テスト起動.
+* `npm test`: テスト起動.
 
-## 利用しているパケージ
+## 利用しているパケージ
 
 * [React](https://reactjs.org/)
 * [React-Router](https://github.com/ReactTraining/react-router)
