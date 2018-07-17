@@ -37,7 +37,6 @@ class UserList extends Component {
   render() {
     const input = this.state.addingNewList ? (
       <UserListInput
-        listTitles={this.props.lists.map(val => val.title)}
         addList={this.props.addList}
         dismiss={this.dismissAdding}
       />

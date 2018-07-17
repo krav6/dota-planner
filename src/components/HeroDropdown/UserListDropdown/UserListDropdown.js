@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { DropdownToggle, DropdownMenu } from "reactstrap";
+import { DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { connect } from "react-redux";
 
 import * as listActions from "../../../store/actions/list";
@@ -14,38 +14,44 @@ class UserListDropdown extends Component {
     }
   }
   render() {
-    const removeHeroButton = (<button
+    const removeHeroButton = (
+      <button
         className={classes.DropdownItem}
-        onClick={() =>
-          this.onRemoveHeroButtonClicked(this.props.heroId)
-        }
+        onClick={() => this.onRemoveHeroButtonClicked(this.props.heroId)}
       >
         Remove from list
       </button>
     );
 
-    return (
-      <HeroDropdown>
+    return <HeroDropdown>
         <DropdownToggle className={classes.Toggler}>
           {this.props.children}
         </DropdownToggle>
         <DropdownMenu right className={classes.DropdownMenu}>
+          <div className={classes.LinkContainer}>
+            <a className={classes.Link} href={"https://www.dotabuff.com/heroes/" + this.props.heroId} target="_blank">
+              Open Dotabuff
+            </a>
+          </div>
+          <DropdownItem divider />
           {removeHeroButton}
         </DropdownMenu>
-      </HeroDropdown>
-    );
+      </HeroDropdown>;
   }
 }
 
 const mapStateToProps = (state, props) => {
-  const listIndex = state.list.lists.findIndex(list => list.id === props.listId);
+  const listIndex = state.list.lists.findIndex(
+    list => list.id === props.listId
+  );
 
-  return ({
-  list: state.list.lists[listIndex]
-})};
+  return {
+    list: state.list.lists[listIndex]
+  };
+};
 
 const mapDispatchToProps = (dispatch, props) => ({
-  onHeroRemoved: (heroIndex) =>
+  onHeroRemoved: heroIndex =>
     dispatch(listActions.removeHero(props.listId, heroIndex))
 });
 

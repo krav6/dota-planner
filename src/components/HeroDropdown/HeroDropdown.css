@@ -26,6 +26,10 @@
   cursor: pointer;
 }
 
+.DropdownItem:hover {
+  color: white;
+}
+
 .DropdownItem:focus {
   outline: none;
 }
@@ -33,4 +37,18 @@
 .DropdownItemSelected {
   background-color: #42547a;
   color: white;
+}
+
+.Link {
+  color: #999999;
+}
+
+.Link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.LinkContainer {
+  width: 100%;
+  text-align: center;
 }

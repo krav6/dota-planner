@@ -25,11 +25,6 @@ class UserListInput extends Component {
       return false;
     }
 
-    if (this.props.listTitles.includes(this.state.title)) {
-      this.props.addErrorNotification("New list title must be unique.");
-      return false;
-    }
-
     return true;
   };
 
