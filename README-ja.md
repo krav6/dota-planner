@@ -32,6 +32,7 @@
 * [Redux-Thunk](https://github.com/gaearon/redux-thunk)
 * [shortid](https://github.com/dylang/shortid)
 * [reactstrap](https://reactstrap.github.io/)
+* [react-save-refs](https://github.com/AgentME/react-save-refs#readme/)
 
 ## その他
 Dota 2 is a registered trademark of Valve Corporation.

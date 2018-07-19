@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import saveRefs from "react-save-refs";
 
 import * as listActions from "../../store/actions/list";
 import UserListElement from "../../components/UserListElement/UserListElement";
@@ -8,12 +9,11 @@ import classes from "./UserList.css";
 import { Container, Row, Col } from "reactstrap";
 
 class UserList extends Component {
-  constructor(props) {
-    super(props);
-    this.listChildrenRefs = [];
-  }
+  listChildrenRefs = new Map();
+
   state = {
-    addingNewList: false
+    addingNewList: false,
+    listToggleOpen: true
   };
 
   dismissAdding = () => {
@@ -24,15 +24,49 @@ class UserList extends Component {
     this.setState({ addingNewList: true });
   };
 
-  storeChildrenRef = (inst) => {
-    this.listChildrenRefs.push(inst);
-  }
-
   openLists = () => {
     this.listChildrenRefs.forEach(element => {
       element.open();
     });
-  }
+
+    this.setState({ listToggleOpen: false });
+  };
+
+  closeLists = () => {
+    this.listChildrenRefs.forEach(element => {
+      element.close();
+    });
+
+    this.setState({ listToggleOpen: true });
+  };
+
+  getListToggleButton = () => {
+    if (this.props.lists.length === 0) {
+      return null;
+    }
+
+    if (this.state.listToggleOpen) {
+      return (
+        <button
+          className={classes.Button}
+          type="button"
+          onClick={this.openLists}
+        >
+          <i className="fas fa-book-open fa-lg" />
+        </button>
+      );
+    }
+
+    return (
+      <button
+        className={classes.Button}
+        type="button"
+        onClick={this.closeLists}
+      >
+        <i className="fas fa-book fa-lg" />
+      </button>
+    );
+  };
 
   render() {
     const input = this.state.addingNewList ? (
@@ -41,21 +75,18 @@ class UserList extends Component {
         dismiss={this.dismissAdding}
       />
     ) : null;
-    
+
     const lists = this.props.lists.map((val, index) => (
       <UserListElement
         key={val.id}
-        ref={this.storeChildrenRef}
+        ref={saveRefs(this.listChildrenRefs, index)}
         index={index}
         list={val}
         removeList={this.props.removeList}
       />
     ));
 
-    const openListsButton = this.props.lists.length === 0 ? null : <button className={classes.Button} type="button" onClick={this.openLists}>
-          {" "}
-          <i className="fas fa-folder-open fa-lg" />
-        </button>;
+    const listToggleButton = this.getListToggleButton();
 
     return (
       <Container>
@@ -69,7 +100,7 @@ class UserList extends Component {
             >
               <i className="fas fa-plus fa-lg" />
             </button>
-            {openListsButton}
+            {listToggleButton}
             {input}
             <ul className={classes.List}>{lists}</ul>
           </Col>

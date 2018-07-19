@@ -22,6 +22,12 @@ class UserListElement extends Component {
     }));
   };
 
+  close = () => {
+    this.setState(prevState => ({
+      isOpen: false
+    }));
+  };
+
   render() {
     let listItemClass = classes.ListItem;
     if (this.state.isOpen) {
