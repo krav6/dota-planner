@@ -20,11 +20,6 @@ class UserListInput extends Component {
       return false;
     }
 
-    if (this.state.description === "") {
-      this.props.addErrorNotification("New list description cannot be empty.");
-      return false;
-    }
-
     return true;
   };
 
