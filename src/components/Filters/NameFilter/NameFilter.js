@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import * as filterActions from "../../../store/actions/filter";
 import classes from "./NameFilter.css";
-import Auxiliary from "../../../hoc/Auxiliary";
 
 class NameFilter extends Component {
   handleChange = event => {
@@ -12,7 +11,7 @@ class NameFilter extends Component {
 
   render() {
     return (
-      <Auxiliary>
+      <React.Fragment>
           <label className={classes.Label}>Name:</label> 
         <input
           className={classes.Input}
@@ -27,7 +26,7 @@ class NameFilter extends Component {
             this.props.updateNameFilter("");
           }}
         />
-      </Auxiliary>
+      </React.Fragment>
     );
   }
 }

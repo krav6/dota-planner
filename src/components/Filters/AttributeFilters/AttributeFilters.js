@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import * as filterActions from "../../../store/actions/filter";
 import classes from "./AttributeFilters.css";
 import * as data from "../../../shared/data";
-import Auxiliary from "../../../hoc/Auxiliary";
 
 class AttributeFilters extends Component {
   onAttributeClick = attribute => {
@@ -29,7 +28,7 @@ class AttributeFilters extends Component {
       />
     ));
 
-    return <Auxiliary>{attributes}</Auxiliary>;
+    return <React.Fragment>{attributes}</React.Fragment>;
   }
 }
 

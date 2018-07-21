@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import * as filterActions from "../../../store/actions/filter";
 import classes from "./AttackTypeFilters.css";
 import * as data from "../../../shared/data";
-import Auxiliary from "../../../hoc/Auxiliary";
 
 class AttackTypeFilters extends Component {
     onAttackTypeClick = attackType => {
@@ -29,7 +28,7 @@ class AttackTypeFilters extends Component {
             >{val}</button>
         ));
 
-        return <Auxiliary>{attackTypes}</Auxiliary>;
+        return <React.Fragment>{attackTypes}</React.Fragment>;
     }
 }
 
