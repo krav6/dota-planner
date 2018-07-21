@@ -23,3 +23,9 @@ export const removeList = (listId) => ({
   type: actionTypes.REMOVE_LIST,
   listId
 });
+
+export const setListIsOpen = (listId, isOpen) => ({
+  type: actionTypes.SET_LIST_IS_OPEN,
+  listId,
+  isOpen
+});

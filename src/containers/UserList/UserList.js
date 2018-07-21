@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import saveRefs from "react-save-refs";
 
 import * as listActions from "../../store/actions/list";
 import UserListElement from "../../components/UserListElement/UserListElement";
@@ -9,11 +8,8 @@ import classes from "./UserList.css";
 import { Container, Row, Col } from "reactstrap";
 
 class UserList extends Component {
-  listChildrenRefs = new Map();
-
   state = {
-    addingNewList: false,
-    listToggleOpen: true
+    addingNewList: false
   };
 
   dismissAdding = () => {
@@ -25,19 +21,15 @@ class UserList extends Component {
   };
 
   openLists = () => {
-    this.listChildrenRefs.forEach(element => {
-      element.open();
+    this.props.lists.forEach(element => {
+      this.props.setListIsOpen(element.id, true);
     });
-
-    this.setState({ listToggleOpen: false });
   };
 
   closeLists = () => {
-    this.listChildrenRefs.forEach(element => {
-      element.close();
+    this.props.lists.forEach(element => {
+      this.props.setListIsOpen(element.id, false);
     });
-
-    this.setState({ listToggleOpen: true });
   };
 
   getListToggleButton = () => {
@@ -45,7 +37,9 @@ class UserList extends Component {
       return null;
     }
 
-    if (this.state.listToggleOpen) {
+    const isEveryListOpen = this.props.lists.every(list => list.isOpen);
+
+    if (!isEveryListOpen) {
       return (
         <button
           className={classes.Button}
@@ -79,10 +73,10 @@ class UserList extends Component {
     const lists = this.props.lists.map((val, index) => (
       <UserListElement
         key={val.id}
-        ref={saveRefs(this.listChildrenRefs, index)}
         index={index}
         list={val}
         removeList={this.props.removeList}
+        setListIsOpen={this.props.setListIsOpen}
       />
     ));
 
@@ -117,7 +111,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   removeList: listId => dispatch(listActions.removeList(listId)),
   addList: (title, description) =>
-    dispatch(listActions.addList(title, description, []))
+    dispatch(listActions.addList(title, description, [])),
+  setListIsOpen: (listId, isOpen) =>
+    dispatch(listActions.setListIsOpen(listId, isOpen))
 });
 
 export default connect(

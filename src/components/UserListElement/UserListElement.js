@@ -6,31 +6,13 @@ import classes from "./UserListElement.css";
 import UserListDropdown from "../HeroDropdown/UserListDropdown/UserListDropdown";
 
 class UserListElement extends Component {
-  state = {
-    isOpen: false
-  };
-
   toggleMenu = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen
-    }));
-  };
-
-  open = () => {
-    this.setState(prevState => ({
-      isOpen: true
-    }));
-  };
-
-  close = () => {
-    this.setState(prevState => ({
-      isOpen: false
-    }));
+    this.props.setListIsOpen(this.props.list.id, !this.props.list.isOpen);
   };
 
   render() {
     let listItemClass = classes.ListItem;
-    if (this.state.isOpen) {
+    if (this.props.list.isOpen) {
       listItemClass += " " + classes.ListItemUncollapsed;
     }
 
@@ -39,7 +21,7 @@ class UserListElement extends Component {
         <h3 className={classes.Title} onClick={this.toggleMenu}>
           {this.props.list.title}
         </h3>
-        {this.state.isOpen ? (
+        {this.props.list.isOpen ? (
           <i
             className={"far fa-times-circle fa-lg " + classes.CloseButton}
             onClick={e => {
@@ -49,7 +31,7 @@ class UserListElement extends Component {
           />
         ) : null}
         <p className={classes.Description}>{this.props.list.description}</p>
-        <Collapse isOpen={this.state.isOpen}>
+        <Collapse isOpen={this.props.list.isOpen}>
           <HeroIcons
             iconWrapper={UserListDropdown}
             heroes={this.props.list.heroes}

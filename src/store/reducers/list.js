@@ -4,8 +4,23 @@ import * as actionTypes from "../actions/actionTypes";
 
 const cachedLists = localStorage.getItem("lists");
 
+const getLists = (cachedLists) => {
+  if (cachedLists === null) {
+    return null;
+  }
+
+  const parsedLists = JSON.parse(cachedLists);
+  parsedLists.forEach(element => {
+    if (element.isOpen === undefined) {
+      element.isOpen = false;
+    }
+  });
+
+  return parsedLists;
+};
+
 const initialState = {
-  lists: cachedLists === null ? [] : JSON.parse(cachedLists)
+  lists: getLists(cachedLists)
 };
 
 const updateCache = state => {
@@ -17,7 +32,7 @@ const addHero = (state, action) => {
   const listIndex = state.lists.findIndex(list => list.id === action.listId);
 
   if (listIndex === -1) {
-    return;
+    return state;
   }
 
   return {
@@ -37,7 +52,7 @@ const removeHero = (state, action) => {
   const listIndex = state.lists.findIndex(list => list.id === action.listId);
 
   if (listIndex === -1) {
-    return;
+    return state;
   }
 
   return {
@@ -64,7 +79,8 @@ const addList = (state, action) => {
         id: shortid.generate(),
         title: action.title,
         description: action.description,
-        heroes: [...action.heroes]
+        heroes: [...action.heroes],
+        isOpen: false
       },
       ...state.lists
     ]
@@ -75,13 +91,33 @@ const removeList = (state, action) => {
   const listIndex = state.lists.findIndex(list => list.id === action.listId);
 
   if (listIndex === -1) {
-    return;
+    return state;
   }
 
   return {
     ...state,
     lists: [
       ...state.lists.slice(0, listIndex),
+      ...state.lists.slice(listIndex + 1)
+    ]
+  };
+};
+
+const setListIsOpen = (state, action) => {
+  const listIndex = state.lists.findIndex(list => list.id === action.listId);
+
+  if (listIndex === -1) {
+    return state;
+  }
+
+  return {
+    ...state,
+    lists: [
+      ...state.lists.slice(0, listIndex),
+      {
+        ...state.lists[listIndex],
+        isOpen: action.isOpen
+      },
       ...state.lists.slice(listIndex + 1)
     ]
   };
@@ -97,6 +133,8 @@ const reducer = (state = initialState, action) => {
       return updateCache(addList(state, action));
     case actionTypes.REMOVE_LIST:
       return updateCache(removeList(state, action));
+    case actionTypes.SET_LIST_IS_OPEN:
+      return updateCache(setListIsOpen(state, action));
     default:
       return state;
   }

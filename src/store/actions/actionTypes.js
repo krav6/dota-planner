@@ -1,5 +1,6 @@
 export const ADD_LIST = "ADD_LIST";
 export const REMOVE_LIST = "REMOVE_LIST";
+export const SET_LIST_IS_OPEN = "SET_LIST_IS_OPEN";
 
 export const ADD_HERO = "ADD_HERO";
 export const REMOVE_HERO = "REMOVE_HERO";
