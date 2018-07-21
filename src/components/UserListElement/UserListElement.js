@@ -16,20 +16,38 @@ class UserListElement extends Component {
       listItemClass += " " + classes.ListItemUncollapsed;
     }
 
+    let closeButton = null;
+    let editButton = null;
+
+    if (this.props.list.isOpen) {
+      editButton = (
+        <i
+          className={"far fa-edit fa-lg " + classes.CloseButton}
+          onClick={e => {
+            e.stopPropagation();
+            this.props.activateEditing(this.props.list.id);
+          }}
+        />
+      );
+
+      closeButton = (
+        <i
+          className={"far fa-times-circle fa-lg " + classes.CloseButton}
+          onClick={e => {
+            e.stopPropagation();
+            this.props.removeList(this.props.list.id);
+          }}
+        />
+      );
+    }
+
     return (
       <li className={listItemClass}>
         <h3 className={classes.Title} onClick={this.toggleMenu}>
           {this.props.list.title}
         </h3>
-        {this.props.list.isOpen ? (
-          <i
-            className={"far fa-times-circle fa-lg " + classes.CloseButton}
-            onClick={e => {
-              e.stopPropagation();
-              this.props.removeList(this.props.list.id);
-            }}
-          />
-        ) : null}
+        {closeButton}
+        {editButton}
         <p className={classes.Description}>{this.props.list.description}</p>
         <Collapse isOpen={this.props.list.isOpen}>
           <HeroIcons

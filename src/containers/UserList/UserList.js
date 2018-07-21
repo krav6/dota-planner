@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 
 import * as listActions from "../../store/actions/list";
 import UserListElement from "../../components/UserListElement/UserListElement";
-import UserListInput from "../../components/UserListInput/UserListInput";
+import AddUserListInput from "../../components/UserListInput/AddUserListInput/AddUserListInput";
+import EditUserListInput from "../../components/UserListInput/EditUserListInput/EditUserListInput";
 import classes from "./UserList.css";
 import { Container, Row, Col } from "reactstrap";
 
 class UserList extends Component {
   state = {
-    addingNewList: false
+    addingNewList: false,
+    editingList: false,
+    listToEdit: null
   };
 
   dismissAdding = () => {
@@ -18,6 +21,14 @@ class UserList extends Component {
 
   activateAdding = () => {
     this.setState({ addingNewList: true });
+  };
+
+  activateEditing = listToEdit => {
+    this.setState({ editingList: true, listToEdit });
+  };
+
+  dismissEditing = () => {
+    this.setState({ editingList: false, listToEdit: null });
   };
 
   openLists = () => {
@@ -63,12 +74,29 @@ class UserList extends Component {
   };
 
   render() {
-    const input = this.state.addingNewList ? (
-      <UserListInput
-        addList={this.props.addList}
-        dismiss={this.dismissAdding}
-      />
-    ) : null;
+    let input = null;
+
+    if (this.state.addingNewList) {
+      input = (
+        <AddUserListInput
+          addList={this.props.addList}
+          dismiss={this.dismissAdding}
+        />
+      );
+    }
+
+    if (this.state.editingList) {
+      const list = this.props.lists.find(element => element.id === this.state.listToEdit);
+      input = (
+        <EditUserListInput
+          listId={this.state.listToEdit}
+          title={list.title}
+          description={list.description}
+          editList={this.props.editList}
+          dismiss={this.dismissEditing}
+        />
+      );
+    }
 
     const lists = this.props.lists.map((val, index) => (
       <UserListElement
@@ -77,6 +105,7 @@ class UserList extends Component {
         list={val}
         removeList={this.props.removeList}
         setListIsOpen={this.props.setListIsOpen}
+        activateEditing={this.activateEditing}
       />
     ));
 
@@ -112,6 +141,8 @@ const mapDispatchToProps = dispatch => ({
   removeList: listId => dispatch(listActions.removeList(listId)),
   addList: (title, description) =>
     dispatch(listActions.addList(title, description, [])),
+  editList: (listId, title, description) =>
+    dispatch(listActions.editList(listId, title, description)),
   setListIsOpen: (listId, isOpen) =>
     dispatch(listActions.setListIsOpen(listId, isOpen))
 });

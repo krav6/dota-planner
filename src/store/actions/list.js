@@ -24,6 +24,13 @@ export const removeList = (listId) => ({
   listId
 });
 
+export const editList = (listId, title, description) => ({
+  type: actionTypes.EDIT_LIST,
+  listId,
+  title,
+  description
+});
+
 export const setListIsOpen = (listId, isOpen) => ({
   type: actionTypes.SET_LIST_IS_OPEN,
   listId,

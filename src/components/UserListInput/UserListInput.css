@@ -2,7 +2,6 @@
   background-color: #1a2130;
   padding: 10px;
   border: 1px rgba(255, 255, 255, 0.3) solid;
-  border-bottom: 0;
 }
 
 .Title {
@@ -41,4 +40,8 @@
 
 .Button:focus {
     outline: none;
+}
+
+.Modal {
+  padding: 0;
 }

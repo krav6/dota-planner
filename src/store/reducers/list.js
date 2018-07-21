@@ -4,7 +4,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const cachedLists = localStorage.getItem("lists");
 
-const getLists = (cachedLists) => {
+const getLists = cachedLists => {
   if (cachedLists === null) {
     return null;
   }
@@ -103,6 +103,27 @@ const removeList = (state, action) => {
   };
 };
 
+const editList = (state, action) => {
+  const listIndex = state.lists.findIndex(list => list.id === action.listId);
+
+  if (listIndex === -1) {
+    return state;
+  }
+
+  return {
+    ...state,
+    lists: [
+      ...state.lists.slice(0, listIndex),
+      {
+        ...state.lists[listIndex],
+        title: action.title,
+        description: action.description
+      },
+      ...state.lists.slice(listIndex + 1)
+    ]
+  };
+};
+
 const setListIsOpen = (state, action) => {
   const listIndex = state.lists.findIndex(list => list.id === action.listId);
 
@@ -133,6 +154,8 @@ const reducer = (state = initialState, action) => {
       return updateCache(addList(state, action));
     case actionTypes.REMOVE_LIST:
       return updateCache(removeList(state, action));
+    case actionTypes.EDIT_LIST:
+      return updateCache(editList(state, action));
     case actionTypes.SET_LIST_IS_OPEN:
       return updateCache(setListIsOpen(state, action));
     default:
