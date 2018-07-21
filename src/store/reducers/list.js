@@ -6,7 +6,7 @@ const cachedLists = localStorage.getItem("lists");
 
 const getLists = cachedLists => {
   if (cachedLists === null) {
-    return null;
+    return [];
   }
 
   const parsedLists = JSON.parse(cachedLists);
