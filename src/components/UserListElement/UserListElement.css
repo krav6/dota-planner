@@ -32,12 +32,12 @@
   background-color: #242e44;
 }
 
-.CloseButton {
+.Button {
   float: right;
   margin: 5px;
   color: rgba(255, 255, 255, 0.4);
 }
 
-.CloseButton:hover {
+.Button:hover {
   color: rgba(255, 255, 255, 1);
 }

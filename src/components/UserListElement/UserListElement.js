@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Collapse } from "reactstrap";
+import { NavLink } from "react-router-dom";
 
 import HeroIcons from "../HeroIcons/HeroIcons";
 import classes from "./UserListElement.css";
@@ -18,11 +19,12 @@ class UserListElement extends Component {
 
     let closeButton = null;
     let editButton = null;
+    let heroManagementButton = null;
 
     if (this.props.list.isOpen) {
       editButton = (
         <i
-          className={"far fa-edit fa-lg " + classes.CloseButton}
+          className={"far fa-edit fa-lg " + classes.Button}
           onClick={e => {
             e.stopPropagation();
             this.props.activateEditing(this.props.list.id);
@@ -32,12 +34,18 @@ class UserListElement extends Component {
 
       closeButton = (
         <i
-          className={"far fa-times-circle fa-lg " + classes.CloseButton}
+          className={"far fa-times-circle fa-lg " + classes.Button}
           onClick={e => {
             e.stopPropagation();
             this.props.removeList(this.props.list.id);
           }}
         />
+      );
+
+      heroManagementButton = (
+        <NavLink to={"/" + this.props.list.id}>
+          <i className={"fas fa-ellipsis-h fa-lg " + classes.Button} />
+        </NavLink>
       );
     }
 
@@ -48,6 +56,7 @@ class UserListElement extends Component {
         </h3>
         {closeButton}
         {editButton}
+        {heroManagementButton}
         <p className={classes.Description}>{this.props.list.description}</p>
         <Collapse isOpen={this.props.list.isOpen}>
           <HeroIcons

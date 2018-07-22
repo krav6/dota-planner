@@ -80,7 +80,7 @@ const addList = (state, action) => {
         title: action.title,
         description: action.description,
         heroes: [...action.heroes],
-        isOpen: false
+        isOpen: true
       },
       ...state.lists
     ]

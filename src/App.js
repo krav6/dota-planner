@@ -6,15 +6,15 @@ import HeroList from "./containers/HeroList/HeroList";
 import ErrorNotifications from "./components/ErrorNotifications/ErrorNotifications";
 
 const app = () => (
-  <div>
+  <React.Fragment>
     <ErrorNotifications />
     <Navigation />
     <Switch>
-      <Route path="/heroes" exact component={HeroList} />
+      <Route path="/:id" exact component={HeroList} />
       <Route path="/" exact component={UserList} />
       <Route render={() => <h1>Page not found.</h1>} />
     </Switch>
-  </div>
+  </React.Fragment>
 );
 
 export default app;
