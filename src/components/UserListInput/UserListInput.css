@@ -39,9 +39,13 @@
 }
 
 .Button:focus {
-    outline: none;
+  outline: none;
 }
 
 .Modal {
+  transform: translate(0, 100%)!important;
+}
+
+.ModalBody {
   padding: 0;
 }

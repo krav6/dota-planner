@@ -1,6 +1,6 @@
 .Title {
   display: inline-block;
-  width: 80%;
+  width: 60%;
   color: white;
   white-space: nowrap;
   overflow: hidden;
@@ -36,6 +36,7 @@
   float: right;
   margin: 5px;
   color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
 }
 
 .Button:hover {

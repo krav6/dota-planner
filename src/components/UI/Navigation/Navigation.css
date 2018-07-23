@@ -1,10 +1,6 @@
 .NavigationBar {
   margin-top: 10px;
-  margin-bottom: 30px;
-}
-
-.NavigationBarToggler {
-  color: white;
+  margin-bottom: 40px;
 }
 
 .NavigationBarBrand {
@@ -12,15 +8,4 @@
   top: 0;
   left: 50%;
   position: absolute;
-}
-
-.NavigationLink {
-  color: white;
-  margin: 5px;
-}
-
-.NavigationLink:hover {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
 }

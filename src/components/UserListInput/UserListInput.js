@@ -36,8 +36,8 @@ class UserListInput extends Component {
 
   render() {
     return (
-      <Modal isOpen toggle={this.props.dismiss}>
-        <ModalBody className={classes.Modal}>
+      <Modal className={classes.Modal} isOpen toggle={this.props.dismiss}>
+        <ModalBody className={classes.ModalBody}>
           <form className={classes.Form} onSubmit={this.handleSubmit}>
             <input
               className={classes.Title}
