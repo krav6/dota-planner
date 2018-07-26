@@ -4,12 +4,12 @@ import { Container, Row, Col } from "reactstrap";
 import HeroIcon from "../HeroIcon/HeroIcon";
 
 const heroIcons = props => {
-  const columns = props.heroes.map((val, index) => (
-    <Col key={val} xs="4" sm="4" md="2" className="mt-1 mb-1">
+  const columns = props.heroIds.map((heroId, index) => (
+    <Col key={heroId} xs="4" sm="4" md="2" className="mt-1 mb-1">
       <HeroIcon
         iconWrapper={props.iconWrapper}
         listId={props.listId}
-        heroId={val}
+        heroId={heroId}
       />
     </Col>
   ));

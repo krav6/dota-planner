@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Navbar } from "reactstrap";
 import { NavLink as RouterNavLink } from "react-router-dom";
+
 import classes from "./Navigation.css";
+
 class Navigation extends Component {
   state = {
     isOpen: false

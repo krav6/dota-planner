@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Modal, ModalBody } from "reactstrap";
 
-import * as notificationActions from "../../store/actions/notification";
 import classes from "./UserListInput.css";
 
 class UserListInput extends Component {
@@ -71,12 +69,5 @@ class UserListInput extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, props) => ({
-  addErrorNotification: message =>
-    dispatch(notificationActions.addErrorNotification(message))
-});
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(UserListInput);
+export default UserListInput;

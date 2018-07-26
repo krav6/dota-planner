@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import * as listActions from "../../store/actions/list";
+import * as listActions from "../../../store/actions/list";
 import classes from "./HeroSelector.css";
 
-//TODO: Refactor the iconwrappers
 class HeroSelector extends Component {
   handleClick = () => {
     const heroIndex = this.props.list.heroes.indexOf(this.props.heroId);

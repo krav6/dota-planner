@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import * as listActions from "../../store/actions/list";
+import * as notificationActions from "../../store/actions/notification";
 import UserListElement from "../../components/UserListElement/UserListElement";
 import AddUserListInput from "../../components/UserListInput/AddUserListInput/AddUserListInput";
 import EditUserListInput from "../../components/UserListInput/EditUserListInput/EditUserListInput";
@@ -81,12 +82,15 @@ class UserList extends Component {
         <AddUserListInput
           addList={this.props.addList}
           dismiss={this.dismissAdding}
+          addErrorNotification={this.props.addErrorNotification}
         />
       );
     }
 
     if (this.state.editingList) {
-      const list = this.props.lists.find(element => element.id === this.state.listToEdit);
+      const list = this.props.lists.find(
+        element => element.id === this.state.listToEdit
+      );
       input = (
         <EditUserListInput
           listId={this.state.listToEdit}
@@ -94,6 +98,7 @@ class UserList extends Component {
           description={list.description}
           editList={this.props.editList}
           dismiss={this.dismissEditing}
+          addErrorNotification={this.props.addErrorNotification}
         />
       );
     }
@@ -144,7 +149,9 @@ const mapDispatchToProps = dispatch => ({
   editList: (listId, title, description) =>
     dispatch(listActions.editList(listId, title, description)),
   setListIsOpen: (listId, isOpen) =>
-    dispatch(listActions.setListIsOpen(listId, isOpen))
+    dispatch(listActions.setListIsOpen(listId, isOpen)),
+  addErrorNotification: message =>
+    dispatch(notificationActions.addErrorNotification(message))
 });
 
 export default connect(

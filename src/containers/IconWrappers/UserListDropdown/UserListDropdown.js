@@ -3,8 +3,8 @@ import { DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { connect } from "react-redux";
 
 import * as listActions from "../../../store/actions/list";
-import classes from "../HeroDropdown.css";
-import HeroDropdown from "../HeroDropdown";
+import classes from "../../../components/HeroDropdown/HeroDropdown.css";
+import HeroDropdown from "../../../components/HeroDropdown/HeroDropdown";
 
 class UserListDropdown extends Component {
   onRemoveHeroButtonClicked(heroId) {

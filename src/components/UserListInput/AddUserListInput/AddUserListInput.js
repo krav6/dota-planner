@@ -9,7 +9,13 @@ class AddUserListInput extends Component {
   };
 
   render() {
-    return <UserListInput handleSubmit={this.handleSubmit} dismiss={this.props.dismiss}/>;
+    return (
+      <UserListInput
+        handleSubmit={this.handleSubmit}
+        dismiss={this.props.dismiss}
+        addErrorNotification={this.props.addErrorNotification}
+      />
+    );
   }
 }
 

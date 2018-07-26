@@ -9,7 +9,15 @@ class EditUserListInput extends Component {
   };
 
   render() {
-    return <UserListInput handleSubmit={this.handleSubmit} dismiss={this.props.dismiss} title={this.props.title} description={this.props.description}/>;
+    return (
+      <UserListInput
+        handleSubmit={this.handleSubmit}
+        dismiss={this.props.dismiss}
+        title={this.props.title}
+        description={this.props.description}
+        addErrorNotification={this.props.addErrorNotification}
+      />
+    );
   }
 }
 
